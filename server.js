@@ -9,13 +9,6 @@ var db = require("./models");
 
 var app = express();
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  // we're connected!
-});
-
-
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -118,6 +111,6 @@ app.get("/clearall", function(req, res) {
 //   console.log("App running on port " + PORT + "!");
 // });
 
-app.listen(process.env.MONGODB_URI, function() {
+app.listen(MONGODB_URI, function() {
   console.log("App running on port" + "!");
 });
