@@ -9,6 +9,12 @@ var db = require("./models");
 
 var app = express();
 
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+});
+
 
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
