@@ -3,9 +3,9 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
-var db = require("./models");
+var dbMongo = require("./models");
 
-var PORT = 3000;
+// var PORT = 3000;
 
 var app = express();
 
@@ -20,9 +20,9 @@ var MONGODB_URI = process.env.MONGODB_URI || ("mongodb://user:12password@ds15927
 // mongoose.connect("mongodb://localhost/newsArticles", { useNewUrlParser: true });
 mongoose.connect(MONGODB_URI);
 
-var monConn = mongoose.connection;
+var db = mongoose.connection;
 
-monConn.on("error", console.error.bind(console, "connection error:"));
+db.on("error", console.error.bind(console, "connection error:"));
 
 // Routes
 
@@ -42,7 +42,7 @@ app.get("/scrape", function(req, res) {
         .children("a.storylink")
         .attr("href");
 
-      db.Article.create(result)
+      dbMongo.Article.create(result)
         .then(function(dbArticle) {
           console.log(dbArticle);
         })
@@ -58,7 +58,7 @@ app.get("/scrape", function(req, res) {
 
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
-  db.Article.find({})
+  dbMongo.Article.find({})
     .then(function(dbArticle) {
       res.json(dbArticle);
     })
@@ -69,7 +69,7 @@ app.get("/articles", function(req, res) {
 
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {
-  db.Article.findOne({ _id: req.params.id })
+  dbMongo.Article.findOne({ _id: req.params.id })
     .populate("note")
     .then(function(dbArticle) {
       res.json(dbArticle);
@@ -81,7 +81,7 @@ app.get("/articles/:id", function(req, res) {
 
 // Route for saving/updating an Article's associated Note
 app.post("/articles/:id", function(req, res) {
-  db.Note.create(req.body)
+  dbMongo.Note.create(req.body)
     .then(function(dbNote) {
       return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
     })
@@ -95,7 +95,7 @@ app.post("/articles/:id", function(req, res) {
 
 // Clear the DB
 app.get("/clearall", function(req, res) {
-  db.Article.remove({}, function(error, response) {
+  dbMongo.Article.remove({}, function(error, response) {
     if (error) {
       console.log(error);
       res.send(error);
@@ -112,6 +112,6 @@ app.get("/clearall", function(req, res) {
 //   console.log("App running on port " + PORT + "!");
 // });
 
-app.listen(MONGODB_URI || PORT, function() {
-  console.log("App running on port" + "!");
-});
+// app.listen(MONGODB_URI || PORT, function() {
+//   console.log("App running on port" + "!");
+// });
