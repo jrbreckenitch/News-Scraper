@@ -20,19 +20,19 @@ $.getJSON("/articles", function(data) {
   }
 });
 
-$("#home").click(function(){
-  $.ajax({
-    method: "GET",
-    url: "/"
-  })
-});
+// $("#home").click(function(){
+//   $.ajax({
+//     method: "GET",
+//     url: "/"
+//   })
+// });
 
-$("#news").click(function(data){
-  $.ajax({
-    method: "GET",
-    url: "/"
-  })
-});
+// $("#news").click(function(data){
+//   $.ajax({
+//     method: "GET",
+//     url: "/"
+//   })
+// });
 
 $("#scrapeArticles").click(function(){
   console.log("Scraper clicked")
