@@ -112,6 +112,6 @@ app.get("/clearall", function(req, res) {
 //   console.log("App running on port " + PORT + "!");
 // });
 
-app.listen(MONGODB_URI, function() {
-  console.log("App running on port" + "!");
-});
+// app.listen(MONGODB_URI, function() {
+//   console.log("App running on port" + "!");
+// });
