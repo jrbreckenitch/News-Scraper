@@ -15,8 +15,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
+mongoose.Promise = global.Promise;
+
 // Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || ("mongodb://user:12password@ds159273.mlab.com:59273/heroku_r0r658r3", { useNewUrlParser: true });
+var MONGODB_URI = process.env.MONGODB_URI || ("mongodb://user:12password@ds159273.mlab.com:59273/heroku_r0r658r3", { useMongoClient: true });
 
 // mongoose.connect("mongodb://localhost/newsArticles", { useNewUrlParser: true });
 
