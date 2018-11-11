@@ -9,8 +9,10 @@
 
     <style>
       body { 
-        background-image: url("../images/space.jpg");        
+        background-image: url("../images/nasa.jpg");        
         font-family: 'Play', sans-serif;
+        background-size: 100%;
+        height: 100%;
       }
       #wrapper {
         width: 960px;
@@ -31,7 +33,7 @@
       textarea, input {
         display: block;
         width: 100%;
-        background-color: #FCF5C7;
+        background-color: white;
       }
       input {
         height: 36px;
@@ -46,38 +48,49 @@
         font-size: 60px;
       }
       #scrapeArticles {
-        background-color: red;
+        background-color:  #df80ff;
+        margin-right: 8px;
       }
       #clearArticles {
-        background-color: green;
+        background-color:  #ff80bf;
       }
+      .teal {
+        background-color:  #99e6e6;
+      }
+      .navStyle {
+        background-color: black;
+        color: white;
+      }
+      .noteBtn {
+        background-color:  #ff80bf;   
+        }   
 
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navStyle">
       <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button> -->
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link danger" href="#">News Scraper <span class="sr-only">(current)</span></a>
+            <a id="news" class="nav-link danger text-white" href="#">News Scraper <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a id="home" class="nav-link text-white" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Saved Articles</a>
+            <a class="nav-link text-white" href="#">Saved Articles</a>
           </li>
         </ul>
       </div> 
-      <button id="scrapeArticles" type = "button" class = "btn btn-default navbar-btn">Scrape New Articles</button>
+      <button id="scrapeArticles" type = "button" class = "btn btn-default navbar-btn text-white">Scrape New Articles</button>
       <span>  </span>
-      <button id="clearArticles" type = "button" class = "btn btn-default navbar-btn">Clear Articles</button>
+      <button id="clearArticles" type = "button" class = "btn btn-default navbar-btn text-white">Clear Articles</button>
     </nav>
     <div class="container">
-      <div class="jumbotron">
+      <div class="jumbotron teal">
         <h4 id="newsTitle">News Scraper
             <i class="far fa-newspaper"></i>
         </h4>
