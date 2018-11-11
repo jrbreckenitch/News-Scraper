@@ -20,7 +20,7 @@ var MONGODB_URI = process.env.MONGODB_URI || ("mongodb://user:12password@ds15927
 // mongoose.connect("mongodb://localhost/newsArticles", { useNewUrlParser: true });
 mongoose.connect(MONGODB_URI);
 
-var monConn = moongoose.connection;
+var monConn = mongoose.connection;
 
 monConn.on("error", console.error.bind(console, "connection error:"));
 
