@@ -5,7 +5,7 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 var db = require("./models");
 
-var PORT = 3000;
+// var PORT = 3000;
 
 var app = express();
 
@@ -106,6 +106,10 @@ app.get("/clearall", function(req, res) {
 });
 
 // Start the server
-app.listen(process.env.MONGODB_URI || PORT, function() {
-  console.log("App running on port " + PORT + "!");
+// app.listen(process.env.MONGODB_URI || PORT, function() {
+//   console.log("App running on port " + PORT + "!");
+// });
+
+app.listen(process.env.MONGODB_URI, function() {
+  console.log("App running on port!");
 });
