@@ -4,10 +4,14 @@ var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
 var dbMongo = require("./models");
-
-var PORT = 3000;
+// var dotenv = require('dotenv');
+// var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 var app = express();
+
+// dotenv.config();
+
 
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
@@ -15,14 +19,16 @@ app.use(express.json());
 app.use(express.static("public"));
 
 
+
 // Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || ("mongodb://user:12password@ds159273.mlab.com:59273/heroku_r0r658r3", { useMongoClient: true });
+var MONGODB_URI = process.env.MONGODB_URI  || "mongodb://localhost/newsArticles";
 // mongoose.connect("mongodb://localhost/newsArticles", { useNewUrlParser: true });
+// console.log(MONGODB_URI);
 mongoose.connect(MONGODB_URI);
 
-var db = mongoose.connection;
+// var db = mongoose.connection;
 
-db.on("error", console.error.bind(console, "connection error:"));
+// db.on("error", console.error.bind(console, "connection error:"));
 
 // Routes
 
@@ -108,10 +114,10 @@ app.get("/clearall", function(req, res) {
 });
 
 // Start the server
-// app.listen(PORT, function() {
-//   console.log("App running on port " + PORT + "!");
-// });
-
-app.listen(MONGODB_URI || PORT, function() {
-  console.log("App running on port" + "!");
+app.listen(PORT, function() {
+  console.log("App running on port " + PORT + "!");
 });
+
+// app.listen(MONGODB_URI || PORT, function() {
+//   console.log("App running on port" + "!");
+// });
